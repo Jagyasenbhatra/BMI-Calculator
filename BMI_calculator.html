@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI TEST</title>
+    <style>
+
+        body 
+        {
+            display: flex;
+            justify-content: center;
+        }
+        .box
+        {
+            background-color: gray;
+            height: 500px;
+            width: 500px;
+            border-radius: 50px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            position: relative;
+            top: 20px;
+        }
+        input
+        {
+            width:450px;
+            height: 40px;
+            outline: none;
+            border-radius: 20px;
+            text-align: center;
+            font-size:20px;
+        }
+        button 
+        {
+            padding: 10px 100px;
+            background-color: greenyellow;
+            border-radius: 20px;
+            font-size: 20px;
+        }
+        h1 
+        {
+            margin-top: 20px;
+        }
+        p 
+        {
+            margin-top: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+
+
+    <script src="js/jquery.js"></script>
+
+</head>
+<body>
+    <div class="box">
+        <h2>Enter your Weight and Height</h2>
+    
+                <input type="text" placeholder="Enter weight(in Kg)" id="n1"><br>
+            
+
+                <input type="text" placeholder="Enter height(in m)" id="n2"><br>
+            
+                <button disabled="disabled">Calculate</button>
+
+                
+                <!-- Output display -->
+                <p>Your BMI</p>
+
+                <!-- bmi value -->
+                <h1></h1>
+
+                <!-- Normal or overweight -->
+                <h2></h2>
+            
+        
+    </div>
+    <script>
+
+    $(document).ready(function(){
+
+        $('#n1 ,#n2').focus(function(){
+            
+                  
+            $(this).css('background','orange')
+
+        })
+          
+
+        $('#n1,#n2').blur(function(){
+            $(this).css('background','')
+        })
+
+         
+        $('button').click(function(){
+            var a=(parseFloat)($('#n1').val())
+            var b=(parseFloat)($('#n2').val())
+            var c=(a/(b*b)).toFixed(2)
+        
+        $('h1').html("<i>"+c+"<i>")
+          
+
+        if(c<18)
+        {
+            $('h2').text("(UnderWeight)")
+        }
+        else if(c>25)
+        {
+            $('h2').text("(OverWeight)")
+        }
+        else
+        {
+            $('h2').text("(Noraml)")
+        }
+
+
+
+        })
+
+        $('#n1,#n2').on('input change',function(){
+
+            if($('#n1').val()!='' && $('#n2').val()!='')
+            {
+                $('button').prop('disabled',false)
+            }
+            else
+            {
+                $('button').prop('disabled',true)
+            }
+
+        })
+
+
+
+
+    })
+
+    </script>
+</body>
+</html>
